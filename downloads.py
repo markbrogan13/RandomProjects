@@ -26,7 +26,7 @@ media_extensions = [".webm", ".mpg", ".mp2", ".mpeg", ".mpe", ".mpv", ".ogg",
 
 misc_extensions = [".ttf", ".otf", ".rar", ".application", ".tar.gz", ".stl", ".jar", ".ics", ".bix",
                    ".CT", ".mid", ".tar.xz", ".img", ".eml", ".mobileconfig", ".sfk", ".ckpt", ".yaml",
-                   ".toml", ".dat", ".m", ".vsix", ".bin", ".hex", ".jff"]
+                   ".toml", ".dat", ".m", ".vsix", ".bin", ".hex", ".jff", ".gz", ".xz"]
 
 pcap_extensions = [".pcap", ".pcapng"]
 
