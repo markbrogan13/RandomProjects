@@ -10,9 +10,10 @@ documents_dir = "D:\\Downloads\\Documents"
 images_dir = "D:\\Downloads\\Images"
 media_dir = "D:\\Downloads\\Media"
 misc_dir = "D:\\Downloads\\Misc"
+pcap_dir = "D:\\Downloads\\pcaps"
 
 exe_extensions = [".exe", ".msi"]
-documents_extensions = [".doc", ".docx", ".odt", ".pdf", ".xls", ".xlsx", ".ppt", ".pptx", ".html"]
+documents_extensions = [".doc", ".docx", ".odt", ".pdf", ".PDF", ".xls", ".xlsx", ".ppt", ".pptx", ".html", ".csv"]
 images_extensions = [".jpg", ".jpeg", ".jpe", ".jif", ".jfif", ".jfi", ".png", ".gif", ".webp", 
                      ".tiff", ".tif", ".psd", ".raw", ".arw", ".cr2", ".nrw",
                     ".k25", ".bmp", ".dib", ".heif", ".heic", ".ind", ".indd", 
@@ -21,7 +22,13 @@ images_extensions = [".jpg", ".jpeg", ".jpe", ".jif", ".jfif", ".jfi", ".png", "
 
 media_extensions = [".webm", ".mpg", ".mp2", ".mpeg", ".mpe", ".mpv", ".ogg",
                     ".mp4", ".mp4v", ".m4v", ".avi", ".wmv", ".mov", ".qt", ".flv", ".swf", ".avchd",
-                    ".m4a", ".flac", "mp3", ".wav", ".wma", ".aac"]
+                    ".m4a", ".flac", ".mp3", ".wav", ".wma", ".aac"]
+
+misc_extensions = [".ttf", ".otf", ".rar", ".application", ".tar.gz", ".stl", ".jar", ".ics", ".bix",
+                   ".CT", ".mid", ".tar.xz", ".img", ".eml", ".mobileconfig", ".sfk", ".ckpt", ".yaml",
+                   ".toml", ".dat", ".m", ".vsix", ".bin", ".hex", ".jff"]
+
+pcap_extensions = [".pcap", ".pcapng"]
 
 def make_unique(dest, name):
     filename, extension = splitext(name)
@@ -55,39 +62,46 @@ def download_cleaner():
                 sort_images(file, name)
             elif extension in media_extensions:
                 sort_media(file, name)
-            else:
+            elif extension in pcap_extensions:
+                sort_pcap(file, name)
+            elif extension in misc_extensions:
                 sort_misc(file, name)
 
 def sort_exe(file, name):
     try:
         move_file(exe_dir, file, name)
-        logging.INFO(f"FILE: {name} MOVED TO: {exe_dir}")
-    except:
-        logging.ERROR(f"FILE FAILED TO MOVE: {name} TO {exe_dir}")
+    except Exception:
+        print(Exception)
 
 def sort_documents(file, name):
     try:
         move_file(documents_dir, file, name)
-        logging.INFO(f"FILE: {name} MOVED TO: {exe_dir}")
-    except:
-        logging.ERROR(f"FILE FAILED TO MOVE: {name} TO {documents_dir}")
+    except TypeError:
+        print(Exception)
 
 def sort_images(file, name):
     try:
         move_file(images_dir, file, name)
-        logging.INFO(f"FILE: {name} MOVED TO: {exe_dir}")
-    except:
-        logging.ERROR(f"FILE FAILED TO MOVE: {name} TO {images_dir}")
+    except Exception:
+        print(Exception)
     
 def sort_media(file, name):
     try:
         move_file(media_dir, file, name)
-        logging.INFO(f"FILE: {name} MOVED TO: {exe_dir}")
-    except:
-        logging.ERROR(f"FILE FAILED TO MOVE: {name} TO {media_dir}")
+    except Exception:
+        print(Exception)
 
 def sort_misc(file, name):
-    logging.DEBUG(f"does nothing for now, file accessed {name}")
+    try:
+        move_file(misc_dir, file, name)
+    except Exception:
+        print(Exception)
+
+def sort_pcap(file, name):
+    try:
+        move_file(pcap_dir, file, name)
+    except Exception:
+        print(Exception)
 
 if __name__ == "__main__":
     download_cleaner()
